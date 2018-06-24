@@ -1,8 +1,6 @@
 # C# Style Guide
 
-A general approach to C#.
-
-Other guides and resources:
+A general style guide for C#.
 
 ## Table of Contents
 
