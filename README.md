@@ -292,7 +292,7 @@ var total = price + (price * 0.25M);
 
 // good
 const decimal TAX = 0.25M;
-...
+
 var total = price + (price * TAX);
 ```
 
