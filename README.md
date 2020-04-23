@@ -208,7 +208,7 @@ void DoSomething()
 }
 ```
 
-- Prefer using a single descriptive boolean variable instead of long or complex if evaluations.
+- Prefer using a single descriptive boolean variable instead of long or complex `if` evaluations.
 
 ```csharp
 // bad
