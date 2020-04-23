@@ -121,7 +121,8 @@ Wrap long comments.
 
 ## Booleans
 
-- Booleans should generally be prefixed with _is_, _has_, _should_, or sometimes, _was_.
+- Prefer to prefix your Booleans with _is_, _has_, _should_, _can_, or _was_.
+- Prefer affirmative phrases e.g. `CanSeek` instead of `CantSeak`.
 
 ```csharp
 // bad
@@ -131,7 +132,7 @@ public bool Enabled { get; set; }
 public bool IsEnabled { get; set; }
 ```
 
-[Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/enum)
+[Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-type-members#names-of-properties)
 
 **[back to top](#table-of-contents)**
 
@@ -211,17 +212,17 @@ void DoSomething()
 
 ```csharp
 // bad
-if (a >= 100 && b != 13 &&  c)
+if (a >= 100 && b != 13 && c)
 {
-    // Does something.
+    // Do something.
 }
 
 // good
-var isSomethingToDo = a >= 100 && b != 13 &&  c;
+var isSomethingToDo = a >= 100 && b != 13 && c;
 
 if (isSomethingToDo)
 {
-    // Does something.
+    // Do something.
 }
 ```
 
@@ -290,7 +291,7 @@ using System.Linq;
 var total = price + (price * 0.25M);
 
 // good
-const double TAX = 0.25M;
+const decimal TAX = 0.25M;
 ...
 var total = price + (price * TAX);
 ```
