@@ -5,13 +5,12 @@ A general style guide for C#.
 ## Table of Contents
 
 1. [Spacing](#spacing)
-1. [Conditionals](#conditionals)
 1. [Naming Conventions](#naming-conventions)
-1. [Types](#types)
+1. [Commas](#commas)
 1. [Comments](#comments)
 1. [Booleans](#booleans)
+1. [Conditional Operator](#conditional-operator)
 1. [Class vs Struct](https://github.com/dotnet/docs/blob/master/docs/standard/design-guidelines/choosing-between-class-and-struct.md#choosing-between-class-and-struct)
-1. [Enums](#enums)
 1. [If Statements](#if-statements)
 1. [No Else Return](#no-else-return)
 1. [Sort Imports](#sort-imports)
@@ -26,23 +25,21 @@ A general style guide for C#.
 
 - Use _spaces_ over _tabs_.
 - Use four (4) spaces.
-- Method and other braces (`if`, `else`, `switch`, `while`, etc.) must have a space before and after brackets.
+- `if`, `else`, `switch`, `while`, etc. must have a space before the brackets.
 
 ```csharp
-// GOOD
+// good
 if (isValid)
 {
     // Do something.
 }
 
-// BAD
+// bad
 if(isValid)
 {
     // Do something.
 }
 ```
-
-## Conditional
 
 ## Naming Conventions
 
@@ -61,11 +58,7 @@ Examples:
 - `PropertyDescriptor`
 - `HtmlTag`
 
-The exception being for two-letter acronyms in which both letters are capitalized:
-
-Example:
-
-- `IOStream`
+The exception being for two-letter acronyms in which both letters are capitalized, for example; `IOStream`.
 
 ### camelCasing
 
@@ -76,7 +69,32 @@ Use camelCasing for the following:
 
 **[↑ back to top](#table-of-contents)**
 
-## Types
+## Commas
+
+```csharp
+// bad
+var sentences = new List<string>() {
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    , "Duis volutpat consectetur ante, nec accumsan nunc blandit quis."
+    , "Nunc hendrerit lacinia lectus, quis ultricies augue."
+};
+
+// good
+var sentences = new List<string> {
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Duis volutpat consectetur ante, nec accumsan nunc blandit quis.",
+    "Nunc hendrerit lacinia lectus, quis ultricies augue."
+};
+
+// also good
+var sentences = new List<string> {
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Duis volutpat consectetur ante, nec accumsan nunc blandit quis.",
+    "Nunc hendrerit lacinia lectus, quis ultricies augue.",
+};
+```
+
+If you choose to adopt the trailing comma, be consistent with it and use it everywhere.
 
 **[↑ back to top](#table-of-contents)**
 
@@ -94,7 +112,7 @@ Wrap long comments.
 
 ```csharp
 // This is a very long comment so we will wrap it to a new line after it
-// surpasses roughly 80 characters.
+// it surpasses 80 characters.
 ```
 
 [Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions#commenting-conventions)
@@ -103,37 +121,33 @@ Wrap long comments.
 
 ## Booleans
 
-- Booleans (bools) should generally be prefixed with either _is_, _has_, or _should_.
+- Booleans should generally be prefixed with _is_, _has_, _should_, or sometimes, _was_.
 
 ```csharp
-// Bad
-public bool Advanced { get; set; }
+// bad
+public bool Enabled { get; set; }
 
-// Good
-public bool IsAdvanced { get; set; }
-```
-
-**[back to top](#table-of-contents)**
-
-## Enums
-
-- Use a value of zero (`0`) for none/empty.
-
-```csharp
-public enum Furniture
-{
-    None,
-    Chair,
-    Desk,
-    Table
-}
-```
-
-```csharp
-
+// good
+public bool IsEnabled { get; set; }
 ```
 
 [Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/enum)
+
+**[back to top](#table-of-contents)**
+
+## Conditional Operator
+
+The conditional operator, also known as the ternary conditional operator, should wrap to multiple lines if it is very long.
+
+```csharp
+// good
+var foo = (a > b) ? value1 : value2;
+
+// good
+var food = (aLongValueName > anotherLongValueName)
+    ? aLongValueName
+    : anotherLongValueName;
+```
 
 **[back to top](#table-of-contents)**
 
@@ -142,7 +156,7 @@ public enum Furniture
 - Avoid negated `if` statements when possible.
 
 ```csharp
-// BAD
+// bad
 if (!isValid)
 {
     // This is false.
@@ -152,7 +166,7 @@ else
     // This is true.
 }
 
-// GOOD
+// good
 if (isValid)
 {
     // This is true.
@@ -166,7 +180,7 @@ else
 - Consider avoiding nested code blocks in `if` statements.
 
 ```csharp
-// OKAY
+// okay
 void DoSomething()
 {
     if (isValid)
@@ -178,7 +192,7 @@ void DoSomething()
     }
 }
 
-// BETTER
+// better
 void DoSomething()
 {
     if (!isValid)
@@ -193,14 +207,34 @@ void DoSomething()
 }
 ```
 
+- Prefer using a single descriptive boolean variable instead of long or complex if evaluations.
+
+```csharp
+// bad
+if (a >= 100 && b != 13 &&  c)
+{
+    // Does something.
+}
+
+// good
+var isSomethingToDo = a >= 100 && b != 13 &&  c;
+
+if (isSomethingToDo)
+{
+    // Does something.
+}
+```
+
+> Why? This improves readability by clarifying when we should enter the `if` statement.
+
 **[↑ back to top](#table-of-contents)**
 
 ## No Else Return
 
-If an if block contains a return statement, the else block becomes unnecessary. Its contents can be placed outside of the block.
+If an `if` block contains a return statement, the else block becomes unnecessary. Its contents can be placed outside of the block.
 
 ```csharp
-// BAD
+// bad
 function Foo()
 {
     if (x)
@@ -213,7 +247,7 @@ function Foo()
     }
 }
 
-// GOOD
+// good
 function Foo()
 {
     if (x)
@@ -234,12 +268,12 @@ function Foo()
 - Sort your `using` statements alphabetically.
 
 ```csharp
-// BAD
+// bad
 using System.Linq;
 using System.Collection;
 using System;
 
-// GOOD
+// good
 using System;
 using System.Collection;
 using System.Linq;
@@ -252,11 +286,11 @@ using System.Linq;
 - Magic numbers are generally defined as unnamed constants. Avoid magic numbers at all costs.
 
 ```csharp
-// BAD
-var total = price + (price * 0.25f);
+// bad
+var total = price + (price * 0.25M);
 
-// GOOD
-const float TAX = 0.25f;
+// good
+const double TAX = 0.25M;
 ...
 var total = price + (price * TAX);
 ```
@@ -264,17 +298,15 @@ var total = price + (price * TAX);
 The same principals can also be applied to strings:
 
 ```csharp
-// BAD
-string output = "Success \u2714";
+// bad
+var output = "Success \u2714";
 
-// GOOD
+// good
 private const string CHECKMARK = "\u2714";
 
 ...
 
-string output = $"Success {CHECKMARK}";
-
-
+var output = $"Success {CHECKMARK}";
 ```
 
 **[↑ back to top](#table-of-contents)**
@@ -286,17 +318,17 @@ string output = $"Success {CHECKMARK}";
 Yoda conditions are so named because the literal value of the condition comes first while the variable comes second. For example, the following is a Yoda condition:
 
 ```csharp
-// BAD
+// bad
 if ("red" == colour)
 {
     // ...
 }
 ```
 
-This is called a Yoda condition because it reads as, “red is the color”, similar to the way the Star Wars character Yoda speaks. Compare to the other way of arranging the operands:
+This is called a Yoda condition because it reads as, "red is the color", similar to the way the Star Wars character Yoda speaks. Compare to the other way of arranging the operands:
 
 ```csharp
-// GOOD
+// good
 if (colour == "red")
 {
     // ...
@@ -321,7 +353,7 @@ MyClass.Bar.cs
 
 > When should I use partial classes?
 
-Partial classes should be considered if your classes is becoming very (exceeding 1,000 lines) and cannot be broken up into multiple classes.
+Partial classes should be considered if your classes are becoming very large (exceeding 1,000 lines) and cannot be broken up into multiple classes.
 You may also use partial classes if a portion of your class is programmatically generated from an external source.
 
 [Source<sup>1</sup>](https://stackoverflow.com/questions/1478610/naming-conventions-for-partial-class-files#answer-1478628)
