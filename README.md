@@ -117,7 +117,7 @@ Wrap long comments.
 
 [Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions#commenting-conventions)
 
-**[back to top](#table-of-contents)**
+**[↑ back to top](#table-of-contents)**
 
 ## Booleans
 
@@ -134,7 +134,7 @@ public bool IsEnabled { get; set; }
 
 [Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-type-members#names-of-properties)
 
-**[back to top](#table-of-contents)**
+**[↑ back to top](#table-of-contents)**
 
 ## Conditional Operator
 
@@ -150,7 +150,7 @@ var food = (aLongValueName > anotherLongValueName)
     : anotherLongValueName;
 ```
 
-**[back to top](#table-of-contents)**
+**[↑ back to top](#table-of-contents)**
 
 ## `If` Statements
 
