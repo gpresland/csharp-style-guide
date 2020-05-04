@@ -112,7 +112,7 @@ Wrap long comments.
 
 ```csharp
 // This is a very long comment so we will wrap it to a new line after it
-// it surpasses 80 characters.
+// surpasses 80 characters.
 ```
 
 [Source<sup>1</sup>](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions#commenting-conventions)
