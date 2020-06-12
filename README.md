@@ -145,7 +145,7 @@ The conditional operator, also known as the ternary conditional operator, should
 var foo = (a > b) ? value1 : value2;
 
 // good
-var food = (aLongValueName > anotherLongValueName)
+var foo = (aLongValueName > anotherLongValueName)
     ? aLongValueName
     : anotherLongValueName;
 ```
