@@ -303,11 +303,12 @@ The same principals can also be applied to strings:
 var output = "Success \u2714";
 
 // good
-private const string CHECKMARK = "\u2714";
-
-...
+const string CHECKMARK = "\u2714";
 
 var output = $"Success {CHECKMARK}";
+
+// best
+var output = "Success ✔";
 ```
 
 **[↑ back to top](#table-of-contents)**
